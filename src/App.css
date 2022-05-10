@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   background-color: #282c34;
-  min-height: 100vh;
+  height: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -15,15 +15,52 @@
   color: white;
 }
 
+h2 {
+  font-weight: 400;
+}
+
 .container {
-  border: 1px solid white;
   width: 100%;
+  height: calc(100% - 200px);
+}
+
+.setting {
+  background-color: white;
+  text-align: left;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+input[type='file'] {
+  width: 40%;
+}
+
+input[type='text'],
+input[type='number'] {
+  width: 30px;
+  margin: 0px 4px;
+}
+
+.lyrics {
+  width: 100%;
+  margin-top: 16px;
+  height: 100%;
+}
+
+textarea {
+  width: calc(100% - 4px);
+  border: 0px;
+  resize: none;
+  height: 100%;
+  white-space: pre;
 }
 
 @media only screen and (min-width: 768px) {
   /* For desktop: */
   .container {
-    border: 1px solid white;
     width: 700px;
   }
 }

@@ -50,29 +50,26 @@ const App = () => {
   useEffect(() => {
     if (file) {
       try {
-        setKey(transposeChord('A', 0));
-
         const fileToLoad = file;
         const fileReader = new FileReader();
 
         fileReader.onload = function (fileLoadedEvent) {
           const renderedLyrics = fileLoadedEvent.target.result;
 
-          const matchedKey = renderedLyrics?.match(/(-[A-Z#]+)/gi);
+          const matchedKey = renderedLyrics?.match(/(=[A-Z#]+)/gi);
           let formatedKey = '';
 
           if (matchedKey) {
-            formatedKey = matchedKey[0]?.replace('-', '') || '';
+            formatedKey = matchedKey[0]?.replace('=', '') || '';
           } else {
             throw new Error('error');
           }
 
-          const formattedRenderedLyrics = renderedLyrics.replace(
-            /(-[A-Z#]+)/gi,
-            (match) => {
+          const formattedRenderedLyrics = renderedLyrics
+            .replace(/(-[A-Z#]+)/gi, (match) => {
               return transposeChord(match.replace('-', ''), step);
-            }
-          );
+            })
+            .replace('=', '');
 
           setKey(transposeChord(formatedKey, 0));
           setStep(0);
@@ -94,9 +91,19 @@ const App = () => {
   useEffect(() => {
     setTransposeTo(transposeChord(key, step));
     setLyricsTransposed(
-      lyrics.replace(/(-[A-Z#]+)/gi, (match) => {
-        return transposeChord(match.replace('-', ''), step);
-      })
+      lyrics
+        .replace(/(-[A-Z#]+ ?)/gi, (match) => {
+          const trimmedMatch = match.trim().replace('-', '');
+
+          if (
+            trimmedMatch.length !== transposeChord(trimmedMatch, step).length
+          ) {
+            return transposeChord(trimmedMatch, step);
+          }
+
+          return transposeChord(trimmedMatch, step) + ' ';
+        })
+        .replace('=', '')
     );
   }, [step]);
 

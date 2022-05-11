@@ -113,13 +113,16 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <h2>Transpose </h2>
+        <h2>
+          <span>T</span>ranspose <span>C</span>hords
+        </h2>
       </header>
 
       <div className="container">
         <div className="setting">
           <input
             type="file"
+            accept=".txt"
             value={fileName}
             onChange={(e) => {
               setFileName(e.target.value);
@@ -130,12 +133,27 @@ const App = () => {
             Key
             <input type="text" value={key} readOnly></input>
             Step
-            <input
+            {/* <input
               type="number"
               value={step}
               onChange={(e) => setStep(e.target.value)}
               disabled={!file}
-            ></input>
+            ></input> */}
+            <button
+              onClick={() => setStep((prevVal) => prevVal - 1)}
+              disabled={!file}
+            >
+              -
+            </button>
+            <button onClick={() => setStep(0)} disabled={!file}>
+              ↻
+            </button>
+            <button
+              onClick={() => setStep((prevVal) => prevVal + 1)}
+              disabled={!file}
+            >
+              +
+            </button>
             To
             <input type="text" value={transposeTo} readOnly></input>
           </div>

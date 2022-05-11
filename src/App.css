@@ -19,15 +19,22 @@ h2 {
   font-weight: 400;
   margin: 20px 0px;
   font-size: 24px;
+  height: 35px;
+}
+
+span {
+  color: #7189d6;
+  font-weight: bold;
 }
 
 .container {
   width: 100%;
-  height: calc(100% - 200px);
+  height: calc(100% - 140px);
 }
 
 .setting {
   height: 40px;
+  box-sizing: border-box;
   background-color: white;
   text-align: left;
   padding: 8px;
@@ -43,6 +50,11 @@ input[type='file'] {
 
 input[type='text'],
 input[type='number'] {
+  width: 30px;
+  margin: 0px 4px;
+}
+
+button {
   width: 30px;
   margin: 0px 4px;
 }

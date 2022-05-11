@@ -89,19 +89,22 @@ const App = () => {
   }, [file]);
 
   useEffect(() => {
-    setTransposeTo(transposeChord(key, step));
+    const stepFallback = step || 0;
+
+    setTransposeTo(transposeChord(key, stepFallback));
     setLyricsTransposed(
       lyrics
         .replace(/(-[A-Z#]+ ?)/gi, (match) => {
           const trimmedMatch = match.trim().replace('-', '');
 
           if (
-            trimmedMatch.length !== transposeChord(trimmedMatch, step).length
+            trimmedMatch.length !==
+            transposeChord(trimmedMatch, stepFallback).length
           ) {
-            return transposeChord(trimmedMatch, step);
+            return transposeChord(trimmedMatch, stepFallback);
           }
 
-          return transposeChord(trimmedMatch, step) + ' ';
+          return transposeChord(trimmedMatch, stepFallback) + ' ';
         })
         .replace('=', '')
     );

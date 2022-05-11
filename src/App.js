@@ -66,7 +66,7 @@ const App = () => {
           }
 
           const formattedRenderedLyrics = renderedLyrics
-            .replace(/(-[A-Z#b/]+ ?)/gi, (match) => {
+            .replace(/(-[A-Z0-9#b/]+ ?)/gi, (match) => {
               const trimmedMatch = match.trim().replace('-', '');
 
               if (
@@ -110,7 +110,7 @@ const App = () => {
     setTransposeTo(transposeChord(key, stepFallback));
     setLyricsTransposed(
       lyrics
-        .replace(/(-[A-Z#b/]+ ?)/gi, (match) => {
+        .replace(/(-[A-Z0-9#b/]+ ?)/gi, (match) => {
           const trimmedMatch = match.trim().replace('-', '');
 
           if (

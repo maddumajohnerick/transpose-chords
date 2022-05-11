@@ -1,0 +1,7 @@
+{
+  "name": "transposeChords",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

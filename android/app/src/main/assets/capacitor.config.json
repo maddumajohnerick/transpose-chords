@@ -1,0 +1,8 @@
+{
+	"appId": "io.ionic.transposeChords",
+	"appName": "transposeChords",
+	"bundledWebRuntime": false,
+	"npmClient": "npm",
+	"webDir": "build",
+	"cordova": {}
+}

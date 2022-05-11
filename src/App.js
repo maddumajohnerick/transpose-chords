@@ -66,8 +66,24 @@ const App = () => {
           }
 
           const formattedRenderedLyrics = renderedLyrics
-            .replace(/(-[A-Z#]+)/gi, (match) => {
-              return transposeChord(match.replace('-', ''), step);
+            .replace(/(-[A-Z#b/]+ ?)/gi, (match) => {
+              const trimmedMatch = match.trim().replace('-', '');
+
+              if (
+                trimmedMatch.length !== transposeChord(trimmedMatch, 0).length
+              ) {
+                const extraSpace =
+                  trimmedMatch.length - transposeChord(trimmedMatch, 0).length;
+
+                if (extraSpace < 1) {
+                  return transposeChord(trimmedMatch, 0) + ' ';
+                }
+                return (
+                  transposeChord(trimmedMatch, 0) +
+                  ' '.repeat(Math.abs(extraSpace) + 2)
+                );
+              }
+              return transposeChord(trimmedMatch, 0) + '  ';
             })
             .replace('=', '');
 
@@ -94,17 +110,26 @@ const App = () => {
     setTransposeTo(transposeChord(key, stepFallback));
     setLyricsTransposed(
       lyrics
-        .replace(/(-[A-Z#]+ ?)/gi, (match) => {
+        .replace(/(-[A-Z#b/]+ ?)/gi, (match) => {
           const trimmedMatch = match.trim().replace('-', '');
 
           if (
             trimmedMatch.length !==
             transposeChord(trimmedMatch, stepFallback).length
           ) {
-            return transposeChord(trimmedMatch, stepFallback);
-          }
+            const extraSpace =
+              trimmedMatch.length -
+              transposeChord(trimmedMatch, stepFallback).length;
 
-          return transposeChord(trimmedMatch, stepFallback) + ' ';
+            if (extraSpace < 1) {
+              return transposeChord(trimmedMatch, stepFallback) + ' ';
+            }
+            return (
+              transposeChord(trimmedMatch, stepFallback) +
+              ' '.repeat(Math.abs(extraSpace) + 2)
+            );
+          }
+          return transposeChord(trimmedMatch, stepFallback) + '  ';
         })
         .replace('=', '')
     );
@@ -120,7 +145,7 @@ const App = () => {
 
       <div className="container">
         <div className="setting">
-          <div class="upload-border">
+          <div className="upload-border">
             <input
               type="file"
               accept=".txt"

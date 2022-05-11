@@ -33,7 +33,7 @@ span {
 }
 
 .setting {
-  height: 40px;
+  height: 80px;
   box-sizing: border-box;
   background-color: white;
   text-align: left;
@@ -42,10 +42,36 @@ span {
   align-items: center;
   justify-content: space-between;
   font-size: 14px;
+  flex-direction: column;
 }
 
 input[type='file'] {
-  width: 40%;
+  width: 100%;
+  padding: 4px;
+}
+
+.upload-border {
+  border: 1px solid black;
+  width: 100%;
+}
+input[type='file']::-webkit-file-upload-button {
+  width: 0;
+  padding: 0;
+  margin: 0;
+  -webkit-appearance: none;
+  border: none;
+  border: 0px;
+}
+
+x::-webkit-file-upload-button,
+input[type='file']:after {
+  content: 'Browse...';
+  left: 100%;
+  margin-left: 3px;
+  position: relative;
+  -webkit-appearance: button;
+  padding: 3px 8px 2px;
+  border: 0px;
 }
 
 input[type='text'],

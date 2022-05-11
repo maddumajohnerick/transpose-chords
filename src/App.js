@@ -120,25 +120,21 @@ const App = () => {
 
       <div className="container">
         <div className="setting">
-          <input
-            type="file"
-            accept=".txt"
-            value={fileName}
-            onChange={(e) => {
-              setFileName(e.target.value);
-              setFile(e.target.files[0]);
-            }}
-          ></input>
+          <div class="upload-border">
+            <input
+              type="file"
+              accept=".txt"
+              value={fileName}
+              onChange={(e) => {
+                setFileName(e.target.value);
+                setFile(e.target.files[0]);
+              }}
+            ></input>
+          </div>
           <div>
             Key
             <input type="text" value={key} readOnly></input>
             Step
-            {/* <input
-              type="number"
-              value={step}
-              onChange={(e) => setStep(e.target.value)}
-              disabled={!file}
-            ></input> */}
             <button
               onClick={() => setStep((prevVal) => prevVal - 1)}
               disabled={!file}

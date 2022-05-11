@@ -17,8 +17,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-/* .replace(/(-[A-Z#]+)/gi, (match) => {
-              console.log(match);
-              return 'X';
-            }) */

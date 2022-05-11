@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.transposeChords",
-  "appName": "transposeChords",
+  "appId": "io.ionic.transpose",
+  "appName": "Transpose",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",

@@ -113,7 +113,7 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <h2>Transpose Chords</h2>
+        <h2>Transpose </h2>
       </header>
 
       <div className="container">

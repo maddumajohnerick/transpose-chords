@@ -17,6 +17,8 @@
 
 h2 {
   font-weight: 400;
+  margin: 20px 0px;
+  font-size: 24px;
 }
 
 .container {
@@ -25,6 +27,7 @@ h2 {
 }
 
 .setting {
+  height: 40px;
   background-color: white;
   text-align: left;
   padding: 8px;

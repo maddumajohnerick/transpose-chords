@@ -16,6 +16,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "ionic-build": "ionic capacitor add android",
+    "android": "npx cap open android",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

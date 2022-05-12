@@ -106,15 +106,30 @@ const App = () => {
               transposeChord(trimmedMatch, stepFallback).length;
 
             if (extraSpace <= 0) {
+              // console.log(
+              //   '|' +
+              //     trimmedMatch +
+              //     '|' +
+              //     transposeChord(trimmedMatch, stepFallback) +
+              //     '|' +
+              //     extraSpace
+              // );
               return transposeChord(trimmedMatch, stepFallback).replace(
                 ' '.repeat(Math.abs(extraSpace)),
                 ''
               );
             }
-
+            // console.log(
+            //   '||' +
+            //     trimmedMatch +
+            //     '||' +
+            //     transposeChord(trimmedMatch, stepFallback) +
+            //     '||' +
+            //     extraSpace
+            // );
             return (
               transposeChord(trimmedMatch, stepFallback) +
-              ' '.repeat(Math.abs(extraSpace) + 2)
+              ' '.repeat(Math.abs(extraSpace))
             );
           }
           return transposeChord(trimmedMatch, stepFallback);

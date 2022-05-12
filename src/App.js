@@ -66,24 +66,8 @@ const App = () => {
           }
 
           const formattedRenderedLyrics = renderedLyrics
-            .replace(/(-[A-Z0-9#b/]+ ?)/gi, (match) => {
-              const trimmedMatch = match.trim().replace('-', '');
-
-              if (
-                trimmedMatch.length !== transposeChord(trimmedMatch, 0).length
-              ) {
-                const extraSpace =
-                  trimmedMatch.length - transposeChord(trimmedMatch, 0).length;
-
-                if (extraSpace < 1) {
-                  return transposeChord(trimmedMatch, 0) + ' ';
-                }
-                return (
-                  transposeChord(trimmedMatch, 0) +
-                  ' '.repeat(Math.abs(extraSpace) + 2)
-                );
-              }
-              return transposeChord(trimmedMatch, 0) + '  ';
+            .replace(/(-[A-Z0-9#b/]+(  )?)/gi, (match) => {
+              return transposeChord(match, 0).replace('-', '');
             })
             .replace('=', '');
 
@@ -110,8 +94,8 @@ const App = () => {
     setTransposeTo(transposeChord(key, stepFallback));
     setLyricsTransposed(
       lyrics
-        .replace(/(-[A-Z0-9#b/]+ ?)/gi, (match) => {
-          const trimmedMatch = match.trim().replace('-', '');
+        .replace(/(-[A-Z0-9#b/]+(  )?)/gi, (match) => {
+          const trimmedMatch = match.replace('-', '');
 
           if (
             trimmedMatch.length !==
@@ -121,15 +105,34 @@ const App = () => {
               trimmedMatch.length -
               transposeChord(trimmedMatch, stepFallback).length;
 
-            if (extraSpace < 1) {
-              return transposeChord(trimmedMatch, stepFallback) + ' ';
+            if (extraSpace <= 0) {
+              // console.log(
+              //   '|' +
+              //     trimmedMatch +
+              //     '|' +
+              //     transposeChord(trimmedMatch, stepFallback) +
+              //     '|' +
+              //     extraSpace
+              // );
+              return transposeChord(trimmedMatch, stepFallback).replace(
+                ' '.repeat(Math.abs(extraSpace)),
+                ''
+              );
             }
+            // console.log(
+            //   '||' +
+            //     trimmedMatch +
+            //     '||' +
+            //     transposeChord(trimmedMatch, stepFallback) +
+            //     '||' +
+            //     extraSpace
+            // );
             return (
               transposeChord(trimmedMatch, stepFallback) +
               ' '.repeat(Math.abs(extraSpace) + 2)
             );
           }
-          return transposeChord(trimmedMatch, stepFallback) + '  ';
+          return transposeChord(trimmedMatch, stepFallback);
         })
         .replace('=', '')
     );
